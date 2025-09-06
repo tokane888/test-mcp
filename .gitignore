@@ -1,0 +1,10 @@
+.tag
+
+# TODO: claude codeを使用しない場合削除
+# Claude Code設定ファイルを除外（全階層の.claude/settings.local.json）
+**/.claude/settings.local.json
+.serena
+# cipherの一時ファイル
+data
+# Added by goreleaser init:
+dist/

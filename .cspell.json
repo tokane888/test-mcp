@@ -1,0 +1,55 @@
+{
+  "ignorePaths": [
+    // vscode拡張名, libの名前等固有名詞が多いファイルはspell check対象から除外
+    ".devcontainer/devcontainer.json",
+    ".devcontainer/Dockerfile",
+    ".golangci.yml",
+    "go.mod",
+    "go.sum",
+    "lefthook.yml"
+  ],
+  "words": [
+    "adpyke",
+    "anthropics",
+    "azuretools",
+    "buildx",
+    "cnqoj",
+    "dbname",
+    "devcontainers",
+    "foxundermoon",
+    "goarch",
+    "gonic",
+    "godotenv",
+    "gofumpt",
+    "golangci",
+    "gomod",
+    "goreleaser",
+    "incpatch",
+    "infow",
+    "isready",
+    "interactor",
+    "joho",
+    "lefthook",
+    "malva",
+    "mohsen1",
+    "multierr",
+    "nolint",
+    "ollama",
+    "opencontainers",
+    "ossp",
+    "pgtz",
+    "pkglogger",
+    "plpgsql",
+    "shellcheck",
+    "sslmode",
+    "testutil",
+    "timonwong",
+    "trimpath",
+    "usecase",
+    "varchar",
+    "yzhang"
+  ],
+  "ignoreRegExpList": [
+    "[０-９Ａ-Ｚａ-ｚぁ-んァ-ヶ亜-熙纊-黑]+" // 日本語に対してspell checkが正常に機能しないのでcheck対象から除外
+  ]
+}
