@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/tokane888/go-repository-template/services/api/internal/domain"
+	"github.com/tokane888/test-mcp/services/api/internal/domain"
 )
 
 type User struct {

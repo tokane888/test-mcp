@@ -3,7 +3,7 @@ tmp_dir = "/tmp/services_api"
 
 [build]
 bin = "/tmp/services_api/main"
-cmd = "go build -o /tmp/services_api/main ./cmd/api/" # TODO: build対象の.goのディレクトリを設定
+cmd = "go build -o /tmp/services_api/main ./cmd/api/"
 full_bin = "ENV=local /tmp/services_api/main"
 delay = 1000
 exclude_dir = ["tmp", "vendor"]

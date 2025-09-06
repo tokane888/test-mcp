@@ -2,8 +2,8 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tokane888/go-repository-template/services/api/internal/handler"
-	"github.com/tokane888/go-repository-template/services/api/internal/router/middleware"
+	"github.com/tokane888/test-mcp/services/api/internal/handler"
+	"github.com/tokane888/test-mcp/services/api/internal/router/middleware"
 	"go.uber.org/zap"
 )
 

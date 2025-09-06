@@ -1,5 +1,4 @@
-// TODO: モジュール名調整
-module github.com/tokane888/go-repository-template/services/api
+module github.com/tokane888/test-mcp/services/api
 
 go 1.24
 
@@ -8,7 +7,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.9
-	github.com/tokane888/go-repository-template/pkg/logger v0.0.0
+	github.com/tokane888/test-mcp/pkg/logger v0.0.0
 	go.uber.org/zap v1.27.0
 	golang.org/x/crypto v0.40.0
 )
@@ -41,4 +40,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/tokane888/go-repository-template/pkg/logger => ../../pkg/logger
+replace github.com/tokane888/test-mcp/pkg/logger => ../../pkg/logger

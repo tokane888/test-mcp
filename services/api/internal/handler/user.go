@@ -6,11 +6,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/tokane888/go-repository-template/services/api/internal/domain"
-	"github.com/tokane888/go-repository-template/services/api/internal/dto/query"
-	"github.com/tokane888/go-repository-template/services/api/internal/dto/request"
-	"github.com/tokane888/go-repository-template/services/api/internal/dto/response"
-	"github.com/tokane888/go-repository-template/services/api/internal/usecase"
+	"github.com/tokane888/test-mcp/services/api/internal/domain"
+	"github.com/tokane888/test-mcp/services/api/internal/dto/query"
+	"github.com/tokane888/test-mcp/services/api/internal/dto/request"
+	"github.com/tokane888/test-mcp/services/api/internal/dto/response"
+	"github.com/tokane888/test-mcp/services/api/internal/usecase"
 	"go.uber.org/zap"
 )
 

@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/tokane888/go-repository-template/services/api/internal/usecase"
+	"github.com/tokane888/test-mcp/services/api/internal/usecase"
 	"go.uber.org/zap"
 )
 

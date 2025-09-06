@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/tokane888/go-repository-template/services/api/internal/dto/response"
+	"github.com/tokane888/test-mcp/services/api/internal/dto/response"
 )
 
 func APIKeyAuth() gin.HandlerFunc {

@@ -1,4 +1,4 @@
-# go-repository-template
+# test-mcp
 
 Go モノレポ構成のテンプレートリポジトリ
 
@@ -40,7 +40,7 @@ Go モノレポ構成のテンプレートリポジトリ
 - `services/api/` を実際のサービス名に変更
 - 新しいサービス追加時は `services/` 配下に作成
 - リポジトリ内から"TODO: "を検索し、修正
-- リポジトリ内から"go-repository-template"を検索し、修正
+- リポジトリ内から"test-mcp"を検索し、修正
 - CLAUDE.mdは削除の上claude内で`/init`で再生成して調整
 - claude codeを使用しない場合は下記で関連ファイルを探索して削除
   - `find . -name '*claude*' -not -path './.git/*'`
@@ -66,7 +66,7 @@ go run ./cmd/app
 ## local環境向けの各種コマンド例
 
 - 開発用postgres DBログイン
-  - `docker exec -it go-repository-template_devcontainer-postgres-1 psql -U postgres -d api_db`
+  - `docker exec -it test-mcp_devcontainer-postgres-1 psql -U postgres -d api_db`
 - user一覧取得
   - `curl http://localhost:8080/api/v1/users -H 'x-api-key: dummy'`
 - user登録

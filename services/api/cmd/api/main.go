@@ -9,14 +9,13 @@ import (
 	"syscall"
 	"time"
 
-	// TODO: import元調整
-	pkglogger "github.com/tokane888/go-repository-template/pkg/logger"
-	"github.com/tokane888/go-repository-template/services/api/internal/config"
-	"github.com/tokane888/go-repository-template/services/api/internal/db"
-	"github.com/tokane888/go-repository-template/services/api/internal/handler"
-	"github.com/tokane888/go-repository-template/services/api/internal/infrastructure/persistence"
-	"github.com/tokane888/go-repository-template/services/api/internal/router"
-	"github.com/tokane888/go-repository-template/services/api/internal/usecase"
+	pkglogger "github.com/tokane888/test-mcp/pkg/logger"
+	"github.com/tokane888/test-mcp/services/api/internal/config"
+	"github.com/tokane888/test-mcp/services/api/internal/db"
+	"github.com/tokane888/test-mcp/services/api/internal/handler"
+	"github.com/tokane888/test-mcp/services/api/internal/infrastructure/persistence"
+	"github.com/tokane888/test-mcp/services/api/internal/router"
+	"github.com/tokane888/test-mcp/services/api/internal/usecase"
 	"go.uber.org/zap"
 )
 
