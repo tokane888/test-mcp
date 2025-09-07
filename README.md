@@ -1,75 +1,52 @@
 # test-mcp
 
-Go モノレポ構成のテンプレートリポジトリ
+試験的に導入したMCPの導入手順などを記載
 
-## ディレクトリ構成
+## chrome-mcp
 
-```sh
-.
-├── services/          # サービス群
-│   └── api/          # サンプル API サービス
-│       ├── cmd/
-│       ├── configs/
-│       ├── .env/
-│       └── go.mod
-├── pkg/              # 共通モジュール
-│   └── logger/       # ログ関連
-│       └── go.mod
-└── README.md
-```
+- chromeを操作するMCP
+- devcontainer上ではchromeの待受側portへアクセスできないため使用不可
 
-## 開発環境構築手順
+### 導入手順
 
-- devcontainer起動
-- 下記実行でcommit前git hook登録
-  - `lefthook install`
+- MCP server側
+  - [mcp-chrome拡張](https://github.com/hangwin/mcp-chrome?tab=readme-ov-file)をQuick Startの手順にしたがってインストール
+  - `~/.config/google-chrome/Default/Extensions/`配下
+    - 通常はここにchrome拡張の本体があるが、今回は何もない
+      - 今回の手順ではパッケージ化されていないchrome拡張をinstallしているため
+  - chrome拡張にnative messaging host関連の権限が付与されていることを確認
+    - 例
 
-## 設計方針
+      ```sh
+      ~/.config/google-chrome/NativeMessagingHosts cat com.chromemcp.nativehost.json
+      {
+        "name": "com.chromemcp.nativehost",
+        "description": "Node.js Host for Browser Bridge Extension",
+        "path": "/usr/local/lib/node_modules/mcp-chrome-bridge/dist/run_host.sh",
+        "type": "stdio",
+        "allowed_origins": [
+          "chrome-extension://hbdgbgagpkpjffpklnamcljpakneikee/"
+        ]
+      }%
+      ```
 
-- ディレクトリ構成は[Standard Go Project Layout](https://github.com/golang-standards/project-layout/blob/master/README_ja.md#standard-go-project-layout)に従う
-- Go モノレポによる複数サービス管理
-- 各サービスは独立した go.mod を持つ
-- 共通モジュールは `pkg/` ディレクトリに配置
-  - replace ディレクティブでローカル参照
-- 設計はクリーンアーキテクチャに従う
+    - chrome拡張から呼び出すrun_host.shのownerをchromeのownerと同一に設定
+      - `sudo chown tom:tom /usr/local/lib/node_modules/mcp-chrome-bridge/dist/run_host.sh`
+        - `tom:tom`としている部分は実際のownerに置き換え
+- MCP client側
+  - mcp-chrome-bridgeインストール
+    - `sudo npm install -g mcp-chrome-bridge`
+    - ログ出力先ディレクトリ作成
+      - `sudo mkdir -p /usr/local/lib/node_modules/mcp-chrome-bridge/dist/logs`
+      - `sudo chmod 777 /usr/local/lib/node_modules/mcp-chrome-bridge/dist/logs`
+  - claude codeにMCP追加
+    - `claude mcp add chrome node /usr/local/lib/node_modules/mcp-chrome-bridge/dist/mcp/mcp-server-stdio.js`
+    - MCPへの接続成功確認
+      - 例
 
-## テンプレ使用時のTODO
+        ```sh
+         ~ claude mcp list
+        Checking MCP server health...
 
-- devcontainerを使用しない場合
-  - .devcontainer ディレクトリ削除
-- `services/api/` を実際のサービス名に変更
-- 新しいサービス追加時は `services/` 配下に作成
-- リポジトリ内から"TODO: "を検索し、修正
-- リポジトリ内から"test-mcp"を検索し、修正
-- CLAUDE.mdは削除の上claude内で`/init`で再生成して調整
-- claude codeを使用しない場合は下記で関連ファイルを探索して削除
-  - `find . -name '*claude*' -not -path './.git/*'`
-- services配下の不要なservice, README.mdは適宜削除
-- claude codeによるレビューを可能にする場合、`claude`コマンド実行後、下記でgithub appをインストール
-  - `/install-github-app`
-    - 詳細は[公式](https://docs.anthropic.com/en/docs/claude-code/github-actions)参照
-
-## サービス実行例
-
-```bash
-# API サービスの実行
-cd services/api
-go run ./cmd/app
-```
-
-## サービスデバッグ実行例
-
-- ctrl+shift+dで"RUN AND DEBUG"メニューを開く
-- 上のメニューからデバッグ実行したいserviceを選択
-- F5押下でデバッグ実行
-
-## local環境向けの各種コマンド例
-
-- 開発用postgres DBログイン
-  - `docker exec -it test-mcp_devcontainer-postgres-1 psql -U postgres -d api_db`
-- user一覧取得
-  - `curl http://localhost:8080/api/v1/users -H 'x-api-key: dummy'`
-- user登録
-  - `curl -X POST http://localhost:8080/api/v1/users -H 'x-api-key: dummy' -d '{"email": "hoge@test.com", "username": "test_user", "password": "test_password_123"}'`
-- user削除
-  - `curl -X DELETE http://localhost:8080/api/v1/users/e5fa7ced-3a09-479b-a6f1-0c24cadbebe3 -H 'x-api-key: dummy'`
+        chrome: node /usr/local/lib/node_modules/mcp-chrome-bridge/dist/mcp/mcp-server-stdio.js - ✓ Connected
+        ```
